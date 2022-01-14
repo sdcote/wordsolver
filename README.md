@@ -24,12 +24,14 @@ Enter the letters the must be included in the word. These are the yellow/gold le
 
 ### The Process
 
-1. Enter you first guess into Wordle.
-2. Enter `?????` as your search pattern replacing the corresponding `?` with any green letters you get.
+1. Enter your guess into Wordle.
+2. Enter `?????` as your search pattern (a 5-letter word) replacing the corresponding `?` with any green letters you get in the proper position.
    1. Enter any grey letters into the "Exclude Letters" field.
    2. Enter any gold/yellow letters in the "Include Letters" field.
-3. Pres the search button
+3. Press the search button.
 4. Select a word from the list to make your next guess.
 5. Go to step #1.
 
 With each guess, the list of possible words should get smaller. Even wrong guesses are valuable.
+
+My favorite first guesses are "atone" and then "birds". That hits most of the most common letters. 
