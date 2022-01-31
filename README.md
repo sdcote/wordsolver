@@ -29,9 +29,9 @@ Enter the letters the must be included in the word. These are the yellow/gold le
    1. Enter any grey letters into the "Exclude Letters" field.
    2. Enter any gold/yellow letters in the "Include Letters" field.
 3. Press the search button.
-4. Select a word from the list to make your next guess.
+4. Select a word from the list to make your next guess. Simple words are better guesses than the obscure.
 5. Go to step #1.
 
 With each guess, the list of possible words should get smaller. Even wrong guesses are valuable.
 
-My favorite first guesses are "atone" and then "birds". That hits most of the most common letters. 
+My favorite first guesses are "atone" and then "birds". That hits most of the more common letters. There have been letter frequency studies that show "later" is the best first guess.
