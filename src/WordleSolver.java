@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The WordleSolver class contains the main functionality of the tool
@@ -13,6 +10,7 @@ class WordleSolver {
 
     // Map with length of word as the key to list of words of that length
     private final Map<Integer, List<char[]>> wordLists = new HashMap<Integer, List<char[]>>();
+    private final Map<Character, Integer> characterScores = new HashMap<>();
 
     /**
      * Read a .txt file of words into the wordLists map
@@ -36,6 +34,16 @@ class WordleSolver {
                 newLengthList.add(currentWordChars);
                 wordLists.put(currentWordChars.length, newLengthList);
             }
+
+            for (int i = 0; i < currentWordChars.length; i++) {
+                Character character = currentWordChars[i];
+                if (characterScores.containsKey(character)) {
+                    characterScores.put(character, characterScores.get(character) + 1);
+                } else {
+                    characterScores.put(character, 1);
+                }
+            }
+
         }
 
         reader.close();
@@ -125,4 +133,62 @@ class WordleSolver {
 
         return retval;
     }
+
+    /**
+     * Returns the number of occurrences of each character in the given list of strings.
+     *
+     * @param strings
+     * @return
+     */
+    public Map<Character, Integer> calculateCharacterScores(List<String> strings) {
+        Map<Character, Integer> retval = new HashMap<Character, Integer>();
+        if (strings != null) {
+            for (String word : strings) {
+
+                for (int i = 0; i < word.length(); i++) {
+                    Character character = word.charAt(i);
+                    if (retval.containsKey(character)) {
+                        retval.put(character, retval.get(character) + 1);
+                    } else {
+                        retval.put(character, 1);
+                    }
+                }
+
+            }
+        }
+        return retval;
+    }
+
+    /**
+     * @param words
+     * @return
+     */
+    public List<String> sortByCharacterScore(List<String> words) {
+        List<String> retval = words;
+        Map<String, Integer> scoreMap = new HashMap<>();
+
+        if (words != null) {
+            if (characterScores != null) {
+                for (String word : words) {
+                    int wordScore = 0;
+                    for (int i = 0; i < word.length(); i++) {
+                        Character character = word.charAt(i);
+                        wordScore += characterScores.getOrDefault(character, 0);
+                    }
+                    scoreMap.put(word, wordScore);
+                }
+            }
+        }
+        // sort scoreMap by descending value
+        LinkedHashMap<String, Integer> reverseSortedMap = new LinkedHashMap<>();
+        scoreMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
+
+        retval = new ArrayList<>();
+        for (String word : reverseSortedMap.keySet()) {
+            retval.add(word);
+        }
+
+        return retval;
+    }
+
 }

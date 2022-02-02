@@ -121,6 +121,7 @@ class GUI {
 
             matches = wordleSolver.excludeWords(matches, excludeField.getText().toLowerCase());
             matches = wordleSolver.includeWords(matches, includeField.getText().toLowerCase());
+            matches = wordleSolver.sortByCharacterScore(matches);
 
             if (matches.size() != 0) {
                 if (matches.size() == 1) {
