@@ -132,11 +132,11 @@ class GUI {
 
                 if (matches.size() <= 1000) {
                     for (String s : matches) {
-                        outputArea.setText(outputArea.getText() + "\n" + s);
+                        outputArea.setText(outputArea.getText() + "\n" + s + " : " + wordleSolver.scoreWord(s));
                     }
                 } else {
                     for (int j = 0; j < 1000; j++) {
-                        outputArea.setText(outputArea.getText() + "\n" + matches.get(j));
+                        outputArea.setText(outputArea.getText() + "\n" + matches.get(j) + " : " + wordleSolver.scoreWord(matches.get(j)));
                     }
 
                     JOptionPane.showMessageDialog(null, "Returned " + matches.size() + " matches for " + words[i] + ", displaying first 1000 matches.\n" + "Consider filling in more letters.");

@@ -170,25 +170,31 @@ class WordleSolver {
         if (words != null) {
             if (characterScores != null) {
                 for (String word : words) {
-                    int wordScore = 0;
-                    for (int i = 0; i < word.length(); i++) {
-                        Character character = word.charAt(i);
-                        wordScore += characterScores.getOrDefault(character, 0);
-                    }
-                    scoreMap.put(word, wordScore);
+                    scoreMap.put(word, scoreWord(word));
                 }
             }
         }
         // sort scoreMap by descending value
         LinkedHashMap<String, Integer> reverseSortedMap = new LinkedHashMap<>();
         scoreMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
-
+        // curious to see the worst scores // scoreMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.naturalOrder())).forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
         retval = new ArrayList<>();
         for (String word : reverseSortedMap.keySet()) {
             retval.add(word);
         }
 
         return retval;
+    }
+
+    public Integer scoreWord(String word) {
+        int wordScore = 0;
+        if (word != null) {
+            for (int i = 0; i < word.length(); i++) {
+                Character character = word.charAt(i);
+                wordScore += characterScores.getOrDefault(character, 0);
+            }
+        }
+        return wordScore;
     }
 
 }
